@@ -1,14 +1,22 @@
-class arthimetic:
-    def __init__(self,a,b):
-        if a<0:
-            l=self.complement(a)
-        else:
-            l=self.binary(a)
-        if b<0:
-            l1=self.complement(b)
-        else:
-            l1=self.binary(b)
-    def complement(self,a):
-        print("Hello")
-a=int(input())
-b=int(input())
+# decimal to binary
+
+def decToBinary(num,list):
+    if num>=1:
+        decToBinary(num//2,list)
+    list.append(num%2)
+    return list
+    
+def add(l1,l2):
+    pass
+
+def sub(l1,l2):
+    pass
+
+def mul(l1,l2):
+    pass
+
+l1 = []
+l2 = []
+
+a = int(input("first num: "))
+b = int(input("second num: "))
