@@ -9,6 +9,6 @@ class arthimetic:
         else:
             l1=self.binary(b)
     def complement(self,a):
-        
+        print("Hello")
 a=int(input())
 b=int(input())
