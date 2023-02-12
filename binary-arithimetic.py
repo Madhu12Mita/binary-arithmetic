@@ -1,7 +1,9 @@
 # decimal to binary
 def decToBinary(num,list):
     # if num>=1:
+
     #     decToBinary(num//2,list)
+
     # list.append(num%2)
     binary = '{:032b}'.format(num)
     for i in binary:
@@ -27,14 +29,12 @@ def twos_complement(list):
     decToBinary(1,one)
     return(addition(list,one))
 
-# addition function   
+# addition function  
 def addition(list1,list2):
-
     result = []
     rev_l1 = list1[::-1]
     rev_l2 = list2[::-1]
     carry = 0
-
     for i,j in zip(rev_l1,rev_l2):
         val = i+j+carry
         if val==2:
@@ -46,7 +46,6 @@ def addition(list1,list2):
         else:
             carry = 0
         result.append(val)
-
     result = result[::-1]
     return result
 
@@ -58,7 +57,20 @@ def subtraction(list1,list2):
 
 # multiplication function
 def multiplication(list1,list2):
-    pass
+    list1.reverse()
+    list2.reverse()
+    result=[0]*32
+    i=0
+    for digY in list2:
+        current_product=[]
+        for j in range(i):
+            current_product.append(0)
+        for digX in list1:
+            current_product.append(digX*digY)
+        current_product.reverse()
+        result=addition(result,current_product)
+        i+=1
+    return result
 
 def division(list1,list2):
     pass
@@ -72,7 +84,6 @@ def modulus(list1,list2):
 # Driver code
 list1 = []
 list2 = []
-
 # input of 2 decimal numbers
 while(1):
     first_num = int(input("first num: "))
@@ -81,22 +92,17 @@ while(1):
         print("Overload Case, enter again...")
     else:
         break
-
-
 # converting decimal to list of 32 bit binary numbers
 decToBinary(first_num,list1)
 decToBinary(second_num,list2)
-
-
 # choosing operation to perform
 while(1):
     n = int(input("Enter 1 for addition, 2 for subtraction, 3 for multiplication, 4 for division, 5 for power, 6 for modulus:  "))
-
     if(n==1):
         result = addition(list1,list2)
         print(result)
         print(binToDecimal(result))
-        break 
+        break
     elif(n==2):
         if first_num<second_num:
             list1,list2=list2,list1
@@ -112,6 +118,8 @@ while(1):
         break
     elif(n==3):
         result=multiplication(list1,list2)
+        print(result)
+        print(binToDecimal(result))
         break
     elif(n==4):
         result=division(list1,list2)
