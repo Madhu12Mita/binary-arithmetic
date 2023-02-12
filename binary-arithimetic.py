@@ -1,9 +1,7 @@
 # decimal to binary
 def decToBinary(num,list):
     # if num>=1:
-
     #     decToBinary(num//2,list)
-
     # list.append(num%2)
     binary = '{:032b}'.format(num)
     for i in binary:
@@ -72,8 +70,19 @@ def multiplication(list1,list2):
         i+=1
     return result
 
+# division function
 def division(list1,list2):
-    pass
+    zero_list = []
+    decToBinary(0,zero_list)
+    quotient = zero_list
+    dividend = binToDecimal(list1)
+    divisor = binToDecimal(list2)
+    while dividend >= divisor:
+        dividend -= divisor
+        one_list = []
+        decToBinary(1,one_list)
+        quotient = addition(quotient,one_list)
+    return quotient,dividend
 
 def power(list1,list2):
     pass
@@ -122,7 +131,10 @@ while(1):
         print(binToDecimal(result))
         break
     elif(n==4):
-        result=division(list1,list2)
+        result,remainder=division(list1,list2)
+        print("quotient: ", result)
+        print(binToDecimal(result))
+        print("remainder: ", remainder)
         break
     elif(n==5):
         result=power(list1,list2)
