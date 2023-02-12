@@ -16,7 +16,7 @@ def binToDecimal(list):
     for i in list:
         val = val + i*(2**pow)
         pow += 1
-    print(val)
+    return val
 
 # 2's complement
 def twos_complement(list):
@@ -25,10 +25,10 @@ def twos_complement(list):
         else: list[i]=1
     one = []
     decToBinary(1,one)
-    add(list,one)
+    return(addition(list,one))
 
 # addition function   
-def add(list1,list2):
+def addition(list1,list2):
 
     result = []
     rev_l1 = list1[::-1]
@@ -51,13 +51,23 @@ def add(list1,list2):
     return result
 
 # subtraction function
-def sub(list1,list2):
-    pass
+def subtraction(list1,list2):
+    list2=twos_complement(list2)
+    result=addition(list1,list2)
+    return result
 
 # multiplication function
-def mul(list1,list2):
+def multiplication(list1,list2):
     pass
 
+def division(list1,list2):
+    pass
+
+def power(list1,list2):
+    pass
+
+def modulus(list1,list2):
+    pass
 
 # Driver code
 list1 = []
@@ -80,18 +90,37 @@ decToBinary(second_num,list2)
 
 # choosing operation to perform
 while(1):
-    n = int(input("Enter 1 for addition, 2 for subtraction, 3 for multiplication: "))
+    n = int(input("Enter 1 for addition, 2 for subtraction, 3 for multiplication, 4 for division, 5 for power, 6 for modulus:  "))
 
     if(n==1):
-        result = add(list1,list2)
+        result = addition(list1,list2)
         print(result)
-        binToDecimal(result)
+        print(binToDecimal(result))
         break 
     elif(n==2):
-        sub(list1,list2)
+        if first_num<second_num:
+            list1,list2=list2,list1
+            result=subtraction(list1,list2)
+            print(result)
+            a=binToDecimal(result)
+            a=a*-1
+            print(a)
+        else:
+            result=subtraction(list1,list2)
+            print(result)
+            print(binToDecimal(result))
         break
     elif(n==3):
-        mul(list1,list2)
+        result=multiplication(list1,list2)
+        break
+    elif(n==4):
+        result=division(list1,list2)
+        break
+    elif(n==5):
+        result=power(list1,list2)
+        break
+    elif(n==6):
+        result=modulus(list1,list2)
         break
     else:
         print("Enter proper input")
