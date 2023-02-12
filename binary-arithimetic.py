@@ -1,9 +1,7 @@
 # decimal to binary
 def decToBinary(num,list):
     # if num>=1:
-
     #     decToBinary(num//2,list)
-
     # list.append(num%2)
     binary = '{:032b}'.format(num)
     for i in binary:
@@ -30,10 +28,10 @@ def twos_complement(list):
     return(addition(list,one))
 
 # addition function  
-def addition(list1,list2):
+def addition(l1,l2):
     result = []
-    rev_l1 = list1[::-1]
-    rev_l2 = list2[::-1]
+    rev_l1 = l1[::-1]
+    rev_l2 = l2[::-1]
     carry = 0
     for i,j in zip(rev_l1,rev_l2):
         val = i+j+carry
@@ -72,30 +70,55 @@ def multiplication(l1,l2):
         i+=1
     return result
 
-def division(list1,list2):
-    pass
+# division function
+def division(l1,l2):
+    zero_list = []
+    decToBinary(0,zero_list)
+    quotient = zero_list
+    dividend = binToDecimal(l1)
+    divisor = binToDecimal(l2)
+    while dividend >= divisor:
+        dividend -= divisor
+        one_list = []
+        decToBinary(1,one_list)
+        quotient = addition(quotient,one_list)
+    return quotient,dividend
 
-def power(list1,list2):
+def power(l1,l2):
     result=[]
     decToBinary(1,result)
-    one=[]
-    decToBinary(1,one)
-    #print(one,result)
-    counter=binToDecimal(list2)
+    counter=binToDecimal(l2)
     while counter>0:
-        result=multiplication(list1,result)
-        #print(result)
+        result=multiplication(l1,result)
         counter-=1
     return result
 
-def modulus(list1,list2):
-    pass
+# modulus function
+def modulus(l1,l2):
+    q,rem = division(l1, l2)
+    return rem
+
+# factorial function
 def factorial(l1):
-    pass
+    result1 = []
+    decToBinary(1,result1)
+    one_list = []
+    decToBinary(1,one_list)
+    i = binToDecimal(l1)
+
+    while(i > 0):
+        result1 = multiplication(l1,result1)
+        l1 = subtraction(l1,one_list)
+        print("sub")
+        print(l1)
+        i -= 1
+    return result1
+
 
 # Driver code
 list1 = []
 list2 = []
+
 # input of 2 decimal numbers
 while(1):
     first_num = int(input("first num: "))
@@ -104,12 +127,14 @@ while(1):
         print("Overload Case, enter again...")
     else:
         break
+
 # converting decimal to list of 32 bit binary numbers
 decToBinary(first_num,list1)
 decToBinary(second_num,list2)
+
 # choosing operation to perform
 while(1):
-    n = int(input("Enter 1 for addition, 2 for subtraction, 3 for multiplication, 4 for division, 5 for power, 6 for modulus, 7 for factorial "))
+    n = int(input("Enter 1 for addition, 2 for subtraction, 3 for multiplication, 4 for division, 5 for power, 6 for modulus, 7 for factorial:  "))
     if(n==1):
         result = addition(list1,list2)
         print(result)
@@ -134,7 +159,10 @@ while(1):
         print(binToDecimal(result))
         break
     elif(n==4):
-        result=division(list1,list2)
+        result,remainder=division(list1,list2)
+        print("quotient: ", result)
+        print(binToDecimal(result))
+        print("remainder: ", remainder)
         break
     elif(n==5):
         result=power(list1,list2)
@@ -144,11 +172,11 @@ while(1):
     elif(n==6):
         result=modulus(list1,list2)
         print(result)
+        break
+    elif(n==7):
+        result= factorial(list1)
+        print("factorial of " , first_num , " : ", result)
         print(binToDecimal(result))
         break
-    elif (n==7):
-        result=factorial(list1)
-        print(result)
-        print(binToDecimal(result))
     else:
         print("Enter proper input")
