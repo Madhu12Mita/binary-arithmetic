@@ -174,9 +174,12 @@ while(1):
         print(result)
         break
     elif(n==7):
-        result= factorial(list1)
-        print("factorial of " , first_num , " : ", result)
-        print(binToDecimal(result))
+        result1= factorial(list1)
+        print("factorial of " , first_num , " : ", result1)
+        print(binToDecimal(result1))
+        result2= factorial(list2)
+        print("factorial of " , second_num , " : ", result2)
+        print(binToDecimal(result2))
         break
     else:
         print("Enter proper input")
