@@ -88,7 +88,8 @@ def power(list1,list2):
     pass
 
 def modulus(list1,list2):
-    pass
+    q,rem = division(list1, list2)
+    return rem
 
 # Driver code
 list1 = []
@@ -141,6 +142,7 @@ while(1):
         break
     elif(n==6):
         result=modulus(list1,list2)
+        print(result)
         break
     else:
         print("Enter proper input")
