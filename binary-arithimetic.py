@@ -319,6 +319,7 @@ while(1):
         result2= factorial(list2)
         print("factorial of " , second_num , " : ", result2)
         print(binToDecimal(result2))
+        print("hello")
         break
     else:
         # incorrect input
